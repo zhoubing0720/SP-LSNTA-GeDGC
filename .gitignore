@@ -1,0 +1,64 @@
+# Python/cache/IDE
+__pycache__/
+*.py[cod]
+*.so
+.pytest_cache/
+.mypy_cache/
+.idea/
+.vscode/
+*.iml
+.ipynb_checkpoints/
+.DS_Store
+Thumbs.db
+
+# Environments and local settings
+.env
+.venv/
+venv/
+env/
+
+# Data: retain documentation and permit only four selected processed matrices.
+data/raw/
+data/processed/*
+!data/processed/.gitkeep
+!data/processed/Chen-2019.h5mu
+!data/processed/Kidney.h5mu
+!data/processed/multiome.h5mu
+!data/processed/dyngen_branching.h5mu
+data/**/*.h5ad
+data/**/*.h5ad.gz
+data/**/*.loom
+data/**/*.mtx
+data/**/*.mtx.gz
+
+# Models and large intermediate features
+checkpoints/**/*.pkl
+checkpoints/**/*.pt
+checkpoints/**/*.pth
+checkpoints/**/*.ckpt
+checkpoints/**/*.npz
+Intermediate_data/
+intermediatedata/
+paperresources/
+
+# Generated experiment outputs and logs
+results/**/seed_*/
+results/**/*.json
+results/**/*.log
+logs/
+*.log
+weights/
+
+# Temporary/archive/backup files
+*.tmp
+*.temp
+*.bak
+*.old
+*~
+*.zip
+*.rar
+*.7z
+*.tar
+*.tar.gz
+.coverage
+htmlcov/
