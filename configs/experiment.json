@@ -1,0 +1,18 @@
+{
+  "graph_k": 3,
+  "private_beta": 0.1,
+  "pretrain_vae_epochs": 100,
+  "pretrain_classifier_epochs": 70,
+  "training_epochs": 1000,
+  "mnn_lambda": 0.2,
+  "mnn_k": 15,
+  "mnn_feature_gate_power": 1.0,
+  "mnn_min_gate": 0.2,
+  "uot_lambda": 0.15,
+  "uot_k": 3,
+  "uot_feature_gate": false,
+  "uot_mass_gate": false,
+  "spectral_ae_hiddens": [512, "n_clusters"],
+  "spectral_siamese_hiddens": [256, "n_clusters"],
+  "spectral_hiddens": [256, "n_clusters"]
+}

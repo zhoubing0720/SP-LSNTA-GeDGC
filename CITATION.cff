@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "Please cite the associated manuscript when using this code."
+title: "SP-LSNTA-GeDGC: Task-Oriented Shared-Private Routing and Multilevel Structural Alignment for Single-Cell Multi-Omics Clustering"
+type: software
+authors:
+  - given-names: Shizheng
+    family-names: Zhang
+  - given-names: Bing
+    family-names: Zhou
+    email: "15290957496@163.com"
+  - given-names: Yanbu
+    family-names: Guo
+  - given-names: Min
+    family-names: Huang
+  - given-names: Wanwei
+    family-names: Huang
+  - given-names: Dongyuan
+    family-names: Lei
+abstract: "Implementation and selected processed datasets for reproducing the SP-LSNTA-GeDGC single-cell multi-omics clustering experiments."

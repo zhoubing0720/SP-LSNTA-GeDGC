@@ -1,0 +1,15 @@
+dataset,method,ACC,NMI,ARI,Purity,source
+Pbmc10k,GeDGC,71.0,82.3,69.7,90.0,manuscript_table_2
+Pbmc10k,SP-LSNTA-GeDGC,78.2,83.6,73.9,90.5,manuscript_table_2
+Chen-2019,GeDGC,69.1,68.9,59.2,81.0,manuscript_table_2
+Chen-2019,SP-LSNTA-GeDGC,77.6,70.5,60.9,78.7,manuscript_table_2
+Kidney,GeDGC,51.6,51.5,37.5,70.9,manuscript_table_2
+Kidney,SP-LSNTA-GeDGC,67.8,55.8,48.8,71.4,manuscript_table_2
+opmultiome,GeDGC,74.8,80.0,70.8,87.2,manuscript_table_2
+opmultiome,SP-LSNTA-GeDGC,80.5,82.7,73.9,82.8,manuscript_table_2
+multiome,GeDGC,68.1,75.6,65.7,80.8,manuscript_table_2
+multiome,SP-LSNTA-GeDGC,68.5,76.1,65.4,80.0,manuscript_table_2
+TEA-seq,GeDGC,72.1,70.4,56.3,81.9,manuscript_table_3
+TEA-seq,SP-LSNTA-GeDGC,74.9,69.5,58.2,81.1,manuscript_table_3
+dyngen_branching,GeDGC,63.3,75.8,52.6,69.0,manuscript_table_3
+dyngen_branching,SP-LSNTA-GeDGC,61.9,76.7,54.3,68.6,manuscript_table_3

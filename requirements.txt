@@ -1,0 +1,14 @@
+# Versions explicitly recorded by the original experiment README.
+torch==1.13.1
+muon==0.1.3
+scanpy==1.9.3
+
+# Direct imports present in the retained source; exact original versions were not recorded.
+numpy
+pandas
+scipy
+scikit-learn
+tqdm
+annoy
+matplotlib
+munkres

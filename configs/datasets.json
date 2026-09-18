@@ -1,0 +1,89 @@
+{
+  "Chen-2019": {
+    "filename": "Chen-2019.h5mu",
+    "legacy_filenames": ["Chen_high.h5mu.gz", "Chen_high.h5mu"],
+    "backend": "bimodal",
+    "legacy_checkpoint_name": "Chen_high_FINAL_SP_LSNTA_GeDGC",
+    "modalities": [
+      {"name": "rna", "preprocessing": "rna_log1p"},
+      {"name": "atac", "preprocessing": "atac_tfidf"}
+    ],
+    "label_modality": "rna",
+    "label_column": "cell_type"
+  },
+  "Kidney": {
+    "filename": "Kidney.h5mu",
+    "legacy_filenames": ["Kidney_4753.h5mu"],
+    "backend": "bimodal",
+    "legacy_checkpoint_name": "Kidney_4753_FINAL_SP_LSNTA_GeDGC",
+    "modalities": [
+      {"name": "rna", "preprocessing": "rna_log1p"},
+      {"name": "atac", "preprocessing": "atac_tfidf"}
+    ],
+    "label_modality": "rna",
+    "label_column": "cell_type"
+  },
+  "Pbmc10k": {
+    "filename": "Pbmc10k.h5mu",
+    "legacy_filenames": [],
+    "backend": "bimodal",
+    "legacy_checkpoint_name": "Pbmc10k_FINAL_SP_LSNTA_GeDGC",
+    "modalities": [
+      {"name": "rna", "preprocessing": "rna_log1p"},
+      {"name": "atac", "preprocessing": "atac_tfidf"}
+    ],
+    "label_modality": "rna",
+    "label_column": "cell_type"
+  },
+  "opmultiome": {
+    "filename": "opmultiome.h5mu",
+    "legacy_filenames": [],
+    "backend": "bimodal",
+    "legacy_checkpoint_name": "opmultiome_FINAL_SP_LSNTA_GeDGC",
+    "modalities": [
+      {"name": "rna", "preprocessing": "rna_log1p"},
+      {"name": "atac", "preprocessing": "atac_tfidf"}
+    ],
+    "label_modality": "rna",
+    "label_column": "cell_type"
+  },
+  "multiome": {
+    "filename": "multiome.h5mu",
+    "legacy_filenames": ["multiome_high.h5mu.gz", "multiome_high.h5mu"],
+    "backend": "bimodal",
+    "legacy_checkpoint_name": "multiome_high_FINAL_SP_LSNTA_GeDGC",
+    "modalities": [
+      {"name": "rna", "preprocessing": "rna_log1p"},
+      {"name": "atac", "preprocessing": "atac_tfidf"}
+    ],
+    "label_modality": "rna",
+    "label_column": "cell_type"
+  },
+  "TEA-seq": {
+    "filename": "TEA-seq.h5mu",
+    "legacy_filenames": ["TEA_seq.h5mu", "TEA_seq.h5mu.gz", "TEA-seq.h5mu.gz"],
+    "backend": "nmodal",
+    "legacy_checkpoint_name": "TEA_seq_FINAL_SP_LSNTA_GeDGC",
+    "modalities": [
+      {"name": "rna", "preprocessing": "rna_log1p"},
+      {"name": "atac", "preprocessing": "atac_tfidf"},
+      {"name": "adt", "preprocessing": "adt_clr"}
+    ],
+    "label_modality": "rna",
+    "label_column": "cell_type"
+  },
+  "dyngen_branching": {
+    "filename": "dyngen_branching.h5mu",
+    "legacy_filenames": ["dyngen_branching_compatible_13class.h5mu"],
+    "backend": "nmodal",
+    "legacy_checkpoint_name": "dyngen_branching_FINAL_SP_LSNTA_GeDGC",
+    "modalities": [
+      {"name": "rna", "preprocessing": "rna_log1p"},
+      {"name": "premrna", "preprocessing": "rna_log1p"},
+      {"name": "mrna", "preprocessing": "rna_log1p"},
+      {"name": "adt", "preprocessing": "adt_clr"}
+    ],
+    "label_modality": "rna",
+    "label_column": "cell_type"
+  }
+}
