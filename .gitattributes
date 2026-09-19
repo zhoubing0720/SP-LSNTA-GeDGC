@@ -1,0 +1,7 @@
+*.h5mu binary
+*.h5ad binary
+*.h5 binary
+*.pkl binary
+*.pt binary
+*.pth binary
+*.png binary

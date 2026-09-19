@@ -31,6 +31,58 @@ def load_json(path):
         return json.load(handle)
 
 
+def write_json(path, value):
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", encoding="utf-8") as handle:
+        json.dump(value, handle, indent=2, sort_keys=True)
+        handle.write("\n")
+
+
+def validate_experiment_config(config):
+    """Check the public fixed configuration before a scientific run starts."""
+    required = {
+        "graph_k",
+        "private_beta",
+        "pretrain_vae_epochs",
+        "pretrain_classifier_epochs",
+        "training_epochs",
+        "mnn_lambda",
+        "mnn_k",
+        "mnn_feature_gate_power",
+        "mnn_min_gate",
+        "uot_lambda",
+        "uot_k",
+        "uot_feature_gate",
+        "uot_mass_gate",
+        "spectral_ae_hiddens",
+        "spectral_siamese_hiddens",
+        "spectral_hiddens",
+    }
+    missing = sorted(required.difference(config))
+    if missing:
+        raise ValueError("configs/experiment.json is missing keys: {}".format(missing))
+    positive = ("graph_k", "pretrain_vae_epochs", "pretrain_classifier_epochs", "training_epochs", "mnn_k", "uot_k")
+    for key in positive:
+        if int(config[key]) < 1:
+            raise ValueError("Experiment setting {!r} must be positive.".format(key))
+    for key in ("private_beta", "mnn_lambda", "mnn_feature_gate_power", "mnn_min_gate", "uot_lambda"):
+        if float(config[key]) < 0:
+            raise ValueError("Experiment setting {!r} must be non-negative.".format(key))
+    if bool(config["uot_feature_gate"]) or bool(config["uot_mass_gate"]):
+        raise ValueError(
+            "This release implements the manuscript configuration with both "
+            "UOT gates disabled."
+        )
+    for key in ("spectral_ae_hiddens", "spectral_siamese_hiddens", "spectral_hiddens"):
+        value = config[key]
+        if not isinstance(value, list) or len(value) != 2 or value[1] != "n_clusters":
+            raise ValueError(
+                "Experiment setting {!r} must be [hidden_width, 'n_clusters'].".format(key)
+            )
+    return config
+
+
 def parse_args(argv=None):
     parser = argparse.ArgumentParser(
         description="Run one SP-LSNTA-GeDGC dataset per invocation."
@@ -166,6 +218,17 @@ def run_once(dataset_name, spec, experiment, seed, args):
         checkpoint_dir, search_dirs, args.force_pretrain
     )
     configure(checkpoint_dir, result_dir)
+    write_json(
+        result_dir / "run_config.json",
+        {
+            "dataset": dataset_name,
+            "seed": seed,
+            "dataset_spec": spec,
+            "experiment": experiment,
+            "checkpoint_reused": bool(reusable),
+            "checkpoint_source": str(source) if source else None,
+        },
+    )
 
     start = time.perf_counter()
     print("\n" + "=" * 78)
@@ -179,16 +242,16 @@ def run_once(dataset_name, spec, experiment, seed, args):
         print("Reuse complete pretrained checkpoint set from:", source)
     else:
         print("Complete pretrained checkpoint set not found; run pretraining.")
-        pretrain_opt(raw_data, label, n_clusters, legacy_name, seed=seed)
+        pretrain_opt(raw_data, label, n_clusters, legacy_name, seed=seed, config=experiment)
 
     z_shared = get_pretrained_shared_latent(raw_data)
     spectral_net = SpectralNet(
         n_clusters=n_clusters,
         should_use_ae=True,
         should_use_siamese=True,
-        ae_hiddens=[512, n_clusters],
-        siamese_hiddens=[256, n_clusters],
-        spectral_hiddens=[256, n_clusters],
+        ae_hiddens=[int(experiment["spectral_ae_hiddens"][0]), n_clusters],
+        siamese_hiddens=[int(experiment["spectral_siamese_hiddens"][0]), n_clusters],
+        spectral_hiddens=[int(experiment["spectral_hiddens"][0]), n_clusters],
     )
     spectral_net.fit(z_shared)
     spectral_dist = spectral_net.predict(z_shared)
@@ -209,7 +272,7 @@ def run_once(dataset_name, spec, experiment, seed, args):
     gc.collect()
 
     acc, nmi, ari, pur, fmi = train_module.train_opt(
-        formed_data, label, legacy_name, seed=seed
+        formed_data, label, legacy_name, seed=seed, config=experiment
     )
     elapsed = time.perf_counter() - start
     row = {
@@ -270,7 +333,9 @@ def main(argv=None):
         print("\n".join(registry))
         return 0
     dataset_name, spec = resolve_dataset(args.dataset, registry)
-    experiment = load_json(PROJECT_ROOT / "configs" / "experiment.json")
+    experiment = validate_experiment_config(
+        load_json(PROJECT_ROOT / "configs" / "experiment.json")
+    )
     seeds = args.seeds if args.seeds else list(range(args.seed, args.seed + args.repeats))
     if args.dry_run:
         return dry_run(dataset_name, spec, seeds, args)

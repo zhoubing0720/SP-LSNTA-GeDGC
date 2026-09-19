@@ -2,6 +2,8 @@ cff-version: 1.2.0
 message: "Please cite the associated manuscript when using this code."
 title: "SP-LSNTA-GeDGC: Task-Oriented Shared-Private Routing and Multilevel Structural Alignment for Single-Cell Multi-Omics Clustering"
 type: software
+repository-code: "https://github.com/zhoubing0720/SP-LSNTA-GeDGC-Cells"
+url: "https://github.com/zhoubing0720/SP-LSNTA-GeDGC-Cells"
 authors:
   - given-names: Shizheng
     family-names: Zhang
