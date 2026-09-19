@@ -1416,7 +1416,9 @@ def train_opt(
     label,
     dataname,
     seed=0,
+    config=None,
 ):
+    config = config or {}
     if data[0].shape[0] > 1024:
         batch_size = 128
     else:
@@ -1426,7 +1428,14 @@ def train_opt(
     weight_decay = 1e-6
     step_size = 50
     gama = 0.1
-    epoch = 1000
+    epoch = int(config.get("training_epochs", 1000))
+    private_beta = float(config.get("private_beta", 0.10))
+    mnn_lambda = float(config.get("mnn_lambda", 0.20))
+    mnn_k = int(config.get("mnn_k", 15))
+    mnn_feature_gate_power = float(config.get("mnn_feature_gate_power", 1.00))
+    mnn_min_gate = float(config.get("mnn_min_gate", 0.20))
+    uot_lambda = float(config.get("uot_lambda", 0.15))
+    uot_k = int(config.get("uot_k", 3))
 
     device = torch.device(
         "cuda"
@@ -1441,15 +1450,17 @@ def train_opt(
     )
     print("=" * 78)
     print(
-        "private_beta=0.10"
+        "private_beta={:.2f}".format(private_beta)
     )
     print(
-        "MNN: lambda=0.20, K=15, "
-        "feature_gate_power=1.00, min_gate=0.20"
+        "MNN: lambda={:.2f}, K={}, "
+        "feature_gate_power={:.2f}, min_gate={:.2f}".format(
+            mnn_lambda, mnn_k, mnn_feature_gate_power, mnn_min_gate
+        )
     )
     print(
-        "UOT: lambda=0.15, K=3, "
-        "feature_gate=False, mass_gate=False"
+        "UOT: lambda={:.2f}, K={}, "
+        "feature_gate=False, mass_gate=False".format(uot_lambda, uot_k)
     )
     print(
         "Disabled: Leiden / residual / "
@@ -1468,11 +1479,11 @@ def train_opt(
         aggregate_feature_gated_mnn(
             data,
             vae=vae,
-            lambda_input=0.20,
-            mnn_top_k=15,
+            lambda_input=mnn_lambda,
+            mnn_top_k=mnn_k,
             min_keep=1,
-            feature_gate_power=1.00,
-            feature_min_gate=0.20,
+            feature_gate_power=mnn_feature_gate_power,
+            feature_min_gate=mnn_min_gate,
             latent_batch_size=1024,
             knn_chunk_size=512,
             feature_chunk_size=64,
@@ -1484,9 +1495,9 @@ def train_opt(
         aggregate_uot_no_gate(
             data_setting,
             vae=vae,
-            lambda_uot=0.15,
+            lambda_uot=uot_lambda,
             uot_batch_size=256,
-            uot_top_k=3,
+            uot_top_k=uot_k,
             entropic_reg=0.05,
             mass_reg=1.0,
             sinkhorn_iter=60,

@@ -27,6 +27,10 @@ class ReleaseTests(unittest.TestCase):
         )
         self.assertIn(title, citation)
         self.assertIn("submission to *Cells*", readme)
+        repository_url = "https://github.com/zhoubing0720/SP-LSNTA-GeDGC-Cells"
+        self.assertIn(repository_url, readme)
+        self.assertIn(repository_url, citation)
+        self.assertNotIn("[GitHub repository URL]", readme)
         ordered_names = ["Shizheng", "Bing", "Yanbu", "Min", "Wanwei", "Dongyuan"]
         positions = [citation.index("given-names: " + name) for name in ordered_names]
         self.assertEqual(positions, sorted(positions))
@@ -52,6 +56,31 @@ class ReleaseTests(unittest.TestCase):
         )
         self.assertIn("Chen-2019", completed.stdout)
         self.assertIn("dyngen_branching", completed.stdout)
+
+    def test_hosted_dataset_manifest_has_no_release_placeholders(self):
+        with (ROOT / "data" / "dataset_manifest.csv").open(
+            newline="", encoding="utf-8"
+        ) as handle:
+            rows = list(csv.DictReader(handle))
+        hosted = {
+            row["dataset_name"]: row
+            for row in rows
+            if Path(row["expected_local_path"]) in ALLOWED_PROCESSED_DATA
+        }
+        self.assertEqual(set(hosted), {"Chen-2019", "Kidney", "multiome", "dyngen_branching"})
+        for row in hosted.values():
+            self.assertEqual(row["github_size_status"], "included")
+            self.assertNotIn("TO_BE_CONFIRMED", row.values())
+
+    def test_hosted_dataset_integrity_script(self):
+        completed = subprocess.run(
+            [sys.executable, str(ROOT / "scripts" / "verify_data.py")],
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+        self.assertEqual(completed.stdout.count("SHA256_OK"), 4)
+        self.assertNotIn("MISMATCH", completed.stdout)
 
     def test_no_unapproved_data_or_model_artifacts_are_in_tree(self):
         forbidden = {".h5ad", ".pkl", ".pt", ".pth", ".rar", ".zip"}
@@ -90,6 +119,37 @@ class ReleaseTests(unittest.TestCase):
                 summary = next(csv.DictReader(handle))
             self.assertEqual(summary["Runs"], "5")
             self.assertEqual(float(summary["ACC_mean"]), 2.0)
+
+    def test_fixed_experiment_config_is_consumed_by_entry_points(self):
+        run_source = (ROOT / "run.py").read_text(encoding="utf-8")
+        pretrain_source = (ROOT / "src" / "pretrain.py").read_text(encoding="utf-8")
+        bimodal_source = (ROOT / "src" / "train_bimodal.py").read_text(encoding="utf-8")
+        nmodal_source = (ROOT / "src" / "train_nmodal.py").read_text(encoding="utf-8")
+        for key in (
+            "graph_k",
+            "spectral_ae_hiddens",
+            "spectral_siamese_hiddens",
+            "spectral_hiddens",
+        ):
+            self.assertIn('experiment["{}"]'.format(key), run_source)
+        for key in ("pretrain_vae_epochs", "pretrain_classifier_epochs", "private_beta"):
+            self.assertIn("config.get('{}'".format(key), pretrain_source)
+        for source in (bimodal_source, nmodal_source):
+            for key in (
+                "training_epochs",
+                "mnn_lambda",
+                "mnn_k",
+                "mnn_feature_gate_power",
+                "mnn_min_gate",
+                "uot_lambda",
+                "uot_k",
+            ):
+                self.assertIn('config.get("{}"'.format(key), source)
+
+    def test_metric_scales_are_documented(self):
+        text = (ROOT / "results" / "README.md").read_text(encoding="utf-8")
+        self.assertIn("0--100 scale", text)
+        self.assertIn("0--1 scale", text)
 
     def test_complete_historical_checkpoint_set_is_reused(self):
         spec = importlib.util.spec_from_file_location("release_run", ROOT / "run.py")

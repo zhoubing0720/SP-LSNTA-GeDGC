@@ -1,0 +1,30 @@
+name: Release checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  lightweight-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Compile Python sources
+        run: python -m compileall -q run.py scripts src tests
+
+      - name: Run release tests
+        run: python -m unittest discover -s tests -v
+
+      - name: Verify hosted processed datasets
+        run: python scripts/verify_data.py

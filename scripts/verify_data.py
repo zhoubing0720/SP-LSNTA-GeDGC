@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Verify processed dataset presence, size, and SHA-256 against the manifest."""
+"""Verify processed dataset presence, byte size, and SHA-256 against the manifest."""
 
 import argparse
 import csv
@@ -44,9 +44,18 @@ def main():
                 print("MISSING", row["dataset_name"], path)
                 failed = True
                 continue
+            expected_size = int(row["size_bytes"])
+            actual_size = path.stat().st_size
+            if actual_size != expected_size:
+                print(
+                    "SIZE_MISMATCH",
+                    row["dataset_name"],
+                    "expected={} actual={}".format(expected_size, actual_size),
+                )
+                failed = True
             actual = sha256(path)
             ok = actual == row["checksum"].upper()
-            print("OK" if ok else "MISMATCH", row["dataset_name"], actual)
+            print("SHA256_OK" if ok else "SHA256_MISMATCH", row["dataset_name"], actual)
             failed = failed or not ok
     return 1 if failed else 0
 

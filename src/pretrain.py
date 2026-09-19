@@ -112,7 +112,8 @@ def pretrain_classifier(vae, classifier, optimizer, lr_scheduler, dataloader, ep
 
     return classifier, avg_losses
 
-def pretrain_opt(data, label, c, dataname, train_vae=True, seed=0):
+def pretrain_opt(data, label, c, dataname, train_vae=True, seed=0, config=None):
+    config = config or {}
     if data[0].shape[0] > 1024:
         batch_size = 128
     else:
@@ -121,7 +122,8 @@ def pretrain_opt(data, label, c, dataname, train_vae=True, seed=0):
     weight_decay = 1e-6
     step_size = 50
     gama = 0.1
-    epoch = 100
+    epoch = int(config.get('pretrain_vae_epochs', 100))
+    private_beta = float(config.get('private_beta', 0.10))
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -133,7 +135,11 @@ def pretrain_opt(data, label, c, dataname, train_vae=True, seed=0):
         for _, data_v in enumerate(data):
             encoder_sizes.append([data_v.shape[1], 256, c])
 
-        vae = Multiview_VAE(encoder_sizes, activation=activation)
+        vae = Multiview_VAE(
+            encoder_sizes,
+            activation=activation,
+            private_beta=private_beta,
+        )
 
         dataloader = DataLoader(Cell(data), batch_size=batch_size, shuffle=True)
         optimizer = optim.Adam(vae.parameters(), lr=learning_rate, weight_decay=weight_decay)
@@ -208,7 +214,7 @@ def pretrain_opt(data, label, c, dataname, train_vae=True, seed=0):
     GMM = GMM.to('cpu')
 
     learning_rate = 0.01
-    epoch = 70
+    epoch = int(config.get('pretrain_classifier_epochs', 70))
 
     classifier_sizes = [c, c]
     classifier = Classifier(classifier_sizes)
