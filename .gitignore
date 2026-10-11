@@ -62,3 +62,25 @@ weights/
 *.tar.gz
 .coverage
 htmlcov/
+
+# Keep experimental outputs and reviewer correspondence local.
+results/
+revision/tables/
+revision/figures/
+revision/latex_tables/
+revision/supplementary*/
+revision/analysis_report_zh.md
+revision/analysis_validation.json
+revision/feature_gate_diagnostics.json
+revision/figure_captions_and_claims_zh.md
+new_runs/
+local_analysis/
+revision_runs/
+benchmark_outputs/
+revision_analysis/
+benchmark_outputs.zip
+revision_analysis_and_figures.zip
+*response_reviewer*.tex
+*response_reviewer*.pdf
+*cover_letter*.tex
+*cover_letter*.pdf
