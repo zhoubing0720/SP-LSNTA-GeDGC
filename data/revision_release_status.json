@@ -1,0 +1,13 @@
+{
+  "status": "DATA_AND_CODE_ONLY",
+  "public": true,
+  "target_tag": "reviewer-revision-2026-10-11",
+  "release_url": "https://github.com/zhoubing0720/SP-LSNTA-GeDGC/releases/tag/reviewer-revision-2026-10-11",
+  "release_api_url": "https://api.github.com/repos/zhoubing0720/SP-LSNTA-GeDGC/releases/tags/reviewer-revision-2026-10-11",
+  "existing_source_tree_inputs": 4,
+  "processed_data_assets": 5,
+  "checksum_assets": 2,
+  "experimental_result_assets": 0,
+  "reviewer_response_letters": 0,
+  "note": "Data, model/preparation code, configurations and dataset documentation are public. Experimental outputs and reviewer correspondence are retained locally."
+}

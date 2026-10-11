@@ -307,7 +307,7 @@ def write_summary(dataset_name, rows, results_dir):
     for field in METRIC_FIELDS:
         values = [float(row[field]) for row in rows]
         summary[field + "_mean"] = sum(values) / float(len(values))
-        summary[field + "_std"] = statistics.pstdev(values) if len(values) > 1 else 0.0
+        summary[field + "_std"] = statistics.stdev(values) if len(values) > 1 else 0.0
     write_csv(parent / "summary.csv", [summary], list(summary))
 
 

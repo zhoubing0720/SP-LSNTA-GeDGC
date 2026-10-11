@@ -1,0 +1,82 @@
+{
+  "current_input": "dyngen_branching_compatible_13class.h5mu",
+  "sha256": "c02241529fe3683027fb56c3dc824ee66f24527e13483f4ded3bd3cded112d89",
+  "cells": 1000,
+  "features_each": 600,
+  "classes": 13,
+  "class_definition": "from -> to",
+  "class_counts": {
+    "sCmid->sD": 80,
+    "sA->sB": 79,
+    "sDmid->sG": 79,
+    "sC->sCmid": 26,
+    "sD->sDmid": 26,
+    "sG->sEndG": 99,
+    "sB->sC": 99,
+    "sDmid->sH": 80,
+    "sCmid->sE": 79,
+    "sH->sEndH": 78,
+    "sE->sEndE": 118,
+    "sF->sEndF": 78,
+    "sDmid->sF": 79
+  },
+  "feature_composition": {
+    "TF": 67,
+    "Target": 266,
+    "HK": 267
+  },
+  "all_feature_ids_and_order_match_recovered_seed1_generator_prefix": true,
+  "RNA_equals_premrna_plus_mrna_exact": true,
+  "RNA_sum_difference_entries": 0,
+  "checks": {
+    "rna": {
+      "shape": [
+        1000,
+        600
+      ],
+      "feature_ids_match_original_generator_prefix": true,
+      "cell_order_matches_global": true,
+      "labels_match_global": true,
+      "nonnegative_counts": true,
+      "integer_valued_counts": true
+    },
+    "premrna": {
+      "shape": [
+        1000,
+        600
+      ],
+      "feature_ids_match_original_generator_prefix": true,
+      "cell_order_matches_global": true,
+      "labels_match_global": true,
+      "nonnegative_counts": true,
+      "integer_valued_counts": true
+    },
+    "mrna": {
+      "shape": [
+        1000,
+        600
+      ],
+      "feature_ids_match_original_generator_prefix": true,
+      "cell_order_matches_global": true,
+      "labels_match_global": true,
+      "nonnegative_counts": true,
+      "integer_valued_counts": true
+    },
+    "adt": {
+      "shape": [
+        1000,
+        600
+      ],
+      "feature_ids_match_original_generator_prefix": true,
+      "cell_order_matches_global": true,
+      "labels_match_global": true,
+      "nonnegative_counts": true,
+      "integer_valued_counts": true
+    }
+  },
+  "final_converter_sha256": "badd5345f1c819f7041408580adec5c9020bf9b40b4c9106dfffe408227dc8c1",
+  "final_converter_preparation_metadata_matches_input": true,
+  "raw_RDS_or_exported_matrices_recovered": false,
+  "full_simulation_repeated": false,
+  "adt_mapping_evidence": "Recovered inspect_and_export_dyngen.R reads model$experiment$counts_protein and writes that matrix to adt.mtx; final converter reads adt.mtx without a numerical transform. Original RDS-to-current-X numerical identity not independently tested."
+}

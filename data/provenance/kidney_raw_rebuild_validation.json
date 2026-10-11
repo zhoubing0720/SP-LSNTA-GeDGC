@@ -1,0 +1,21 @@
+{
+  "fixed_constructor_rebuild_matches_corrected_dataset": true,
+  "checks": {
+    "rna": {
+      "matrix_difference_entries": 0,
+      "cell_order_same": true,
+      "all_observation_metadata_same": true,
+      "feature_ids_same": true,
+      "label_codes_same": true
+    },
+    "atac": {
+      "matrix_difference_entries": 0,
+      "cell_order_same": true,
+      "all_observation_metadata_same": true,
+      "feature_ids_same": true,
+      "label_codes_same": true
+    }
+  },
+  "frozen_experiment_input_unchanged": true,
+  "rebuilt_file_sha256": "4dd134f77b71cbf2843cb165c7bf68b12fc3b069d4d8329e99f09a1b7d32a8fb"
+}

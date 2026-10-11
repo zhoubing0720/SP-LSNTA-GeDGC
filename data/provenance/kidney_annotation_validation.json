@@ -1,0 +1,52 @@
+{
+  "original_file": "Kidney_4753.h5mu",
+  "original_sha256": "c095bef25a489e7a9d7462827225a91a027004c9ab276e3c309f375dafc837c9",
+  "corrected_file": "Kidney_4753_annotations_v1.h5mu",
+  "corrected_sha256": "8d85673284c34cd0d1bb77a21acb1474a03d7967870b5750a7db8a19c9eea14d",
+  "original_input_unchanged": true,
+  "global_cell_order_same": true,
+  "feature_summary": {
+    "rna": {
+      "features": 5000,
+      "changed_ids": 5000,
+      "first_actual_id": "ENSMUSG00000098178.1"
+    },
+    "atac": {
+      "features": 10000,
+      "changed_ids": 10000,
+      "first_actual_id": "129274"
+    }
+  },
+  "checks": {
+    "rna": {
+      "matrix_shape_same": true,
+      "matrix_dtype_same": true,
+      "matrix_diff_entries": 0,
+      "csr_data_exact": true,
+      "csr_indices_exact": true,
+      "csr_indptr_exact": true,
+      "cell_order_same": true,
+      "obs_all_columns_same": true,
+      "label_category_codes_same": true,
+      "source_feature_ids_correct": true,
+      "var_metadata_survived_roundtrip": true
+    },
+    "atac": {
+      "matrix_shape_same": true,
+      "matrix_dtype_same": true,
+      "matrix_diff_entries": 0,
+      "csr_data_exact": true,
+      "csr_indices_exact": true,
+      "csr_indptr_exact": true,
+      "cell_order_same": true,
+      "obs_all_columns_same": true,
+      "label_category_codes_same": true,
+      "source_feature_ids_correct": true,
+      "var_metadata_survived_roundtrip": true
+    }
+  },
+  "raw_feature_table_sha256": {
+    "GSM3271044_RNA_mouse_kidney_gene.txt": "67bea6a713fcfa6c90d45c4f932873d2b5ff3c15534a9eb95723be72bb0b9c64",
+    "GSM3271045_ATAC_mouse_kidney_peak.txt": "8f0ec767f2d81d95f73fb2ebabe8cd72cc6f29b0a3749a297225c927789c34ef"
+  }
+}

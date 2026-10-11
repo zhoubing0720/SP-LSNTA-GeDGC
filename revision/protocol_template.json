@@ -1,0 +1,1475 @@
+{
+  "protocol_id": "reviewer_revision_full_pipeline_perf_v1",
+  "created": "2026-10-10",
+  "workspace": ".",
+  "python": "python",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "configs": {
+    "A_GeDGC": {
+      "sp": false,
+      "graph": "raw",
+      "fg_mnn": false,
+      "uot": false
+    },
+    "B_SP_only": {
+      "sp": true,
+      "graph": "raw",
+      "fg_mnn": false,
+      "uot": false
+    },
+    "C_SP_latent_graph": {
+      "sp": true,
+      "graph": "latent",
+      "fg_mnn": false,
+      "uot": false
+    },
+    "D_without_UOT": {
+      "sp": true,
+      "graph": "latent",
+      "fg_mnn": true,
+      "uot": false
+    },
+    "E_without_FG_MNN": {
+      "sp": true,
+      "graph": "latent",
+      "fg_mnn": false,
+      "uot": true
+    },
+    "F_full": {
+      "sp": true,
+      "graph": "latent",
+      "fg_mnn": true,
+      "uot": true
+    },
+    "G_full_raw_graph": {
+      "sp": true,
+      "graph": "raw",
+      "fg_mnn": true,
+      "uot": true
+    },
+    "H_LSNTA_only": {
+      "sp": false,
+      "graph": "latent",
+      "fg_mnn": true,
+      "uot": true
+    }
+  },
+  "datasets": {
+    "Pbmc10k": {
+      "path": "data/processed/Pbmc10k.h5mu",
+      "sha256": "0783723e670ed9d4cba53a5f8d964e8d687ea5df0868665c06c9a4e04a3ef80f",
+      "nmodal": false,
+      "cells": 9631,
+      "feature_dims": [
+        3000,
+        15000
+      ],
+      "classes": 19
+    },
+    "Chen_high": {
+      "path": "data/processed/Chen-2019.h5mu",
+      "sha256": "bda2bb87f6d58b11d599e226d391cbae73a9e21610fb03086de7155de4d7ce70",
+      "nmodal": false,
+      "cells": 9190,
+      "feature_dims": [
+        3000,
+        18000
+      ],
+      "classes": 22
+    },
+    "Kidney_4753": {
+      "path": "data/processed/Kidney.h5mu",
+      "sha256": "c095bef25a489e7a9d7462827225a91a027004c9ab276e3c309f375dafc837c9",
+      "nmodal": false,
+      "cells": 4753,
+      "feature_dims": [
+        5000,
+        10000
+      ],
+      "classes": 14
+    },
+    "opmultiome": {
+      "path": "data/processed/opmultiome.h5mu",
+      "sha256": "3b23dac8f96d21e9163a4cc3fe1edd412923820aca6f09685a0f0ba8efeb616a",
+      "nmodal": false,
+      "cells": 6137,
+      "feature_dims": [
+        2500,
+        15000
+      ],
+      "classes": 21
+    },
+    "multiome_high": {
+      "path": "data/processed/multiome.h5mu",
+      "sha256": "bef40bb5875a9f901af7fdc8bcc6b6730dd788ab6defd326c1c12b1fd3920b30",
+      "nmodal": false,
+      "cells": 16847,
+      "feature_dims": [
+        2500,
+        10000
+      ],
+      "classes": 21
+    },
+    "TEA_seq": {
+      "path": "data/processed/TEA-seq.h5mu",
+      "sha256": "393a4f21785a89c50a6ad4004bd83aee929cd9713c90c3066fc8e6582054a0ac",
+      "nmodal": true,
+      "cells": 6310,
+      "feature_dims": [
+        9855,
+        14732,
+        46
+      ],
+      "classes": 11
+    },
+    "dyngen_branching": {
+      "path": "data/processed/dyngen_branching.h5mu",
+      "sha256": "c02241529fe3683027fb56c3dc824ee66f24527e13483f4ded3bd3cded112d89",
+      "nmodal": true,
+      "cells": 1000,
+      "feature_dims": [
+        600,
+        600,
+        600,
+        600
+      ],
+      "classes": 13
+    }
+  },
+  "tasks": [
+    {
+      "dataset": "Pbmc10k",
+      "config": "A_GeDGC",
+      "seed": 0,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "Pbmc10k",
+      "config": "F_full",
+      "seed": 0,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "Kidney_4753",
+      "config": "A_GeDGC",
+      "seed": 0,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "Kidney_4753",
+      "config": "F_full",
+      "seed": 0,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "dyngen_branching",
+      "config": "A_GeDGC",
+      "seed": 0,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "dyngen_branching",
+      "config": "F_full",
+      "seed": 0,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "TEA_seq",
+      "config": "A_GeDGC",
+      "seed": 0,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "TEA_seq",
+      "config": "F_full",
+      "seed": 0,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "Chen_high",
+      "config": "A_GeDGC",
+      "seed": 0,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "Chen_high",
+      "config": "F_full",
+      "seed": 0,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "opmultiome",
+      "config": "A_GeDGC",
+      "seed": 0,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "opmultiome",
+      "config": "F_full",
+      "seed": 0,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "multiome_high",
+      "config": "A_GeDGC",
+      "seed": 0,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "multiome_high",
+      "config": "F_full",
+      "seed": 0,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "Pbmc10k",
+      "config": "A_GeDGC",
+      "seed": 1,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "Pbmc10k",
+      "config": "F_full",
+      "seed": 1,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "Kidney_4753",
+      "config": "A_GeDGC",
+      "seed": 1,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "Kidney_4753",
+      "config": "F_full",
+      "seed": 1,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "dyngen_branching",
+      "config": "A_GeDGC",
+      "seed": 1,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "dyngen_branching",
+      "config": "F_full",
+      "seed": 1,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "TEA_seq",
+      "config": "A_GeDGC",
+      "seed": 1,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "TEA_seq",
+      "config": "F_full",
+      "seed": 1,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "Chen_high",
+      "config": "A_GeDGC",
+      "seed": 1,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "Chen_high",
+      "config": "F_full",
+      "seed": 1,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "opmultiome",
+      "config": "A_GeDGC",
+      "seed": 1,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "opmultiome",
+      "config": "F_full",
+      "seed": 1,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "multiome_high",
+      "config": "A_GeDGC",
+      "seed": 1,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "multiome_high",
+      "config": "F_full",
+      "seed": 1,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "Pbmc10k",
+      "config": "A_GeDGC",
+      "seed": 2,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "Pbmc10k",
+      "config": "F_full",
+      "seed": 2,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "Kidney_4753",
+      "config": "A_GeDGC",
+      "seed": 2,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "Kidney_4753",
+      "config": "F_full",
+      "seed": 2,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "dyngen_branching",
+      "config": "A_GeDGC",
+      "seed": 2,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "dyngen_branching",
+      "config": "F_full",
+      "seed": 2,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "TEA_seq",
+      "config": "A_GeDGC",
+      "seed": 2,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "TEA_seq",
+      "config": "F_full",
+      "seed": 2,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "Chen_high",
+      "config": "A_GeDGC",
+      "seed": 2,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "Chen_high",
+      "config": "F_full",
+      "seed": 2,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "opmultiome",
+      "config": "A_GeDGC",
+      "seed": 2,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "opmultiome",
+      "config": "F_full",
+      "seed": 2,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "multiome_high",
+      "config": "A_GeDGC",
+      "seed": 2,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "multiome_high",
+      "config": "F_full",
+      "seed": 2,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "Pbmc10k",
+      "config": "A_GeDGC",
+      "seed": 3,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "Pbmc10k",
+      "config": "F_full",
+      "seed": 3,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "Kidney_4753",
+      "config": "A_GeDGC",
+      "seed": 3,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "Kidney_4753",
+      "config": "F_full",
+      "seed": 3,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "dyngen_branching",
+      "config": "A_GeDGC",
+      "seed": 3,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "dyngen_branching",
+      "config": "F_full",
+      "seed": 3,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "TEA_seq",
+      "config": "A_GeDGC",
+      "seed": 3,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "TEA_seq",
+      "config": "F_full",
+      "seed": 3,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "Chen_high",
+      "config": "A_GeDGC",
+      "seed": 3,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "Chen_high",
+      "config": "F_full",
+      "seed": 3,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "opmultiome",
+      "config": "A_GeDGC",
+      "seed": 3,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "opmultiome",
+      "config": "F_full",
+      "seed": 3,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "multiome_high",
+      "config": "A_GeDGC",
+      "seed": 3,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "multiome_high",
+      "config": "F_full",
+      "seed": 3,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "Pbmc10k",
+      "config": "A_GeDGC",
+      "seed": 4,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "Pbmc10k",
+      "config": "F_full",
+      "seed": 4,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "Kidney_4753",
+      "config": "A_GeDGC",
+      "seed": 4,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "Kidney_4753",
+      "config": "F_full",
+      "seed": 4,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "dyngen_branching",
+      "config": "A_GeDGC",
+      "seed": 4,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "dyngen_branching",
+      "config": "F_full",
+      "seed": 4,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "TEA_seq",
+      "config": "A_GeDGC",
+      "seed": 4,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "TEA_seq",
+      "config": "F_full",
+      "seed": 4,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "Chen_high",
+      "config": "A_GeDGC",
+      "seed": 4,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "Chen_high",
+      "config": "F_full",
+      "seed": 4,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "opmultiome",
+      "config": "A_GeDGC",
+      "seed": 4,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "opmultiome",
+      "config": "F_full",
+      "seed": 4,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "multiome_high",
+      "config": "A_GeDGC",
+      "seed": 4,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "multiome_high",
+      "config": "F_full",
+      "seed": 4,
+      "role": "main_comparison"
+    },
+    {
+      "dataset": "Pbmc10k",
+      "config": "B_SP_only",
+      "seed": 0,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Pbmc10k",
+      "config": "C_SP_latent_graph",
+      "seed": 0,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Pbmc10k",
+      "config": "D_without_UOT",
+      "seed": 0,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Pbmc10k",
+      "config": "E_without_FG_MNN",
+      "seed": 0,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Pbmc10k",
+      "config": "G_full_raw_graph",
+      "seed": 0,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Pbmc10k",
+      "config": "H_LSNTA_only",
+      "seed": 0,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Chen_high",
+      "config": "B_SP_only",
+      "seed": 0,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Chen_high",
+      "config": "C_SP_latent_graph",
+      "seed": 0,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Chen_high",
+      "config": "D_without_UOT",
+      "seed": 0,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Chen_high",
+      "config": "E_without_FG_MNN",
+      "seed": 0,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Chen_high",
+      "config": "G_full_raw_graph",
+      "seed": 0,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Chen_high",
+      "config": "H_LSNTA_only",
+      "seed": 0,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "opmultiome",
+      "config": "B_SP_only",
+      "seed": 0,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "opmultiome",
+      "config": "C_SP_latent_graph",
+      "seed": 0,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "opmultiome",
+      "config": "D_without_UOT",
+      "seed": 0,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "opmultiome",
+      "config": "E_without_FG_MNN",
+      "seed": 0,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "opmultiome",
+      "config": "G_full_raw_graph",
+      "seed": 0,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "opmultiome",
+      "config": "H_LSNTA_only",
+      "seed": 0,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Pbmc10k",
+      "config": "B_SP_only",
+      "seed": 1,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Pbmc10k",
+      "config": "C_SP_latent_graph",
+      "seed": 1,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Pbmc10k",
+      "config": "D_without_UOT",
+      "seed": 1,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Pbmc10k",
+      "config": "E_without_FG_MNN",
+      "seed": 1,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Pbmc10k",
+      "config": "G_full_raw_graph",
+      "seed": 1,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Pbmc10k",
+      "config": "H_LSNTA_only",
+      "seed": 1,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Chen_high",
+      "config": "B_SP_only",
+      "seed": 1,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Chen_high",
+      "config": "C_SP_latent_graph",
+      "seed": 1,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Chen_high",
+      "config": "D_without_UOT",
+      "seed": 1,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Chen_high",
+      "config": "E_without_FG_MNN",
+      "seed": 1,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Chen_high",
+      "config": "G_full_raw_graph",
+      "seed": 1,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Chen_high",
+      "config": "H_LSNTA_only",
+      "seed": 1,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "opmultiome",
+      "config": "B_SP_only",
+      "seed": 1,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "opmultiome",
+      "config": "C_SP_latent_graph",
+      "seed": 1,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "opmultiome",
+      "config": "D_without_UOT",
+      "seed": 1,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "opmultiome",
+      "config": "E_without_FG_MNN",
+      "seed": 1,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "opmultiome",
+      "config": "G_full_raw_graph",
+      "seed": 1,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "opmultiome",
+      "config": "H_LSNTA_only",
+      "seed": 1,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Pbmc10k",
+      "config": "B_SP_only",
+      "seed": 2,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Pbmc10k",
+      "config": "C_SP_latent_graph",
+      "seed": 2,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Pbmc10k",
+      "config": "D_without_UOT",
+      "seed": 2,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Pbmc10k",
+      "config": "E_without_FG_MNN",
+      "seed": 2,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Pbmc10k",
+      "config": "G_full_raw_graph",
+      "seed": 2,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Pbmc10k",
+      "config": "H_LSNTA_only",
+      "seed": 2,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Chen_high",
+      "config": "B_SP_only",
+      "seed": 2,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Chen_high",
+      "config": "C_SP_latent_graph",
+      "seed": 2,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Chen_high",
+      "config": "D_without_UOT",
+      "seed": 2,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Chen_high",
+      "config": "E_without_FG_MNN",
+      "seed": 2,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Chen_high",
+      "config": "G_full_raw_graph",
+      "seed": 2,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Chen_high",
+      "config": "H_LSNTA_only",
+      "seed": 2,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "opmultiome",
+      "config": "B_SP_only",
+      "seed": 2,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "opmultiome",
+      "config": "C_SP_latent_graph",
+      "seed": 2,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "opmultiome",
+      "config": "D_without_UOT",
+      "seed": 2,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "opmultiome",
+      "config": "E_without_FG_MNN",
+      "seed": 2,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "opmultiome",
+      "config": "G_full_raw_graph",
+      "seed": 2,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "opmultiome",
+      "config": "H_LSNTA_only",
+      "seed": 2,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Pbmc10k",
+      "config": "B_SP_only",
+      "seed": 3,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Pbmc10k",
+      "config": "C_SP_latent_graph",
+      "seed": 3,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Pbmc10k",
+      "config": "D_without_UOT",
+      "seed": 3,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Pbmc10k",
+      "config": "E_without_FG_MNN",
+      "seed": 3,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Pbmc10k",
+      "config": "G_full_raw_graph",
+      "seed": 3,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Pbmc10k",
+      "config": "H_LSNTA_only",
+      "seed": 3,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Chen_high",
+      "config": "B_SP_only",
+      "seed": 3,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Chen_high",
+      "config": "C_SP_latent_graph",
+      "seed": 3,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Chen_high",
+      "config": "D_without_UOT",
+      "seed": 3,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Chen_high",
+      "config": "E_without_FG_MNN",
+      "seed": 3,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Chen_high",
+      "config": "G_full_raw_graph",
+      "seed": 3,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Chen_high",
+      "config": "H_LSNTA_only",
+      "seed": 3,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "opmultiome",
+      "config": "B_SP_only",
+      "seed": 3,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "opmultiome",
+      "config": "C_SP_latent_graph",
+      "seed": 3,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "opmultiome",
+      "config": "D_without_UOT",
+      "seed": 3,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "opmultiome",
+      "config": "E_without_FG_MNN",
+      "seed": 3,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "opmultiome",
+      "config": "G_full_raw_graph",
+      "seed": 3,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "opmultiome",
+      "config": "H_LSNTA_only",
+      "seed": 3,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Pbmc10k",
+      "config": "B_SP_only",
+      "seed": 4,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Pbmc10k",
+      "config": "C_SP_latent_graph",
+      "seed": 4,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Pbmc10k",
+      "config": "D_without_UOT",
+      "seed": 4,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Pbmc10k",
+      "config": "E_without_FG_MNN",
+      "seed": 4,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Pbmc10k",
+      "config": "G_full_raw_graph",
+      "seed": 4,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Pbmc10k",
+      "config": "H_LSNTA_only",
+      "seed": 4,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Chen_high",
+      "config": "B_SP_only",
+      "seed": 4,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Chen_high",
+      "config": "C_SP_latent_graph",
+      "seed": 4,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Chen_high",
+      "config": "D_without_UOT",
+      "seed": 4,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Chen_high",
+      "config": "E_without_FG_MNN",
+      "seed": 4,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Chen_high",
+      "config": "G_full_raw_graph",
+      "seed": 4,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "Chen_high",
+      "config": "H_LSNTA_only",
+      "seed": 4,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "opmultiome",
+      "config": "B_SP_only",
+      "seed": 4,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "opmultiome",
+      "config": "C_SP_latent_graph",
+      "seed": 4,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "opmultiome",
+      "config": "D_without_UOT",
+      "seed": 4,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "opmultiome",
+      "config": "E_without_FG_MNN",
+      "seed": 4,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "opmultiome",
+      "config": "G_full_raw_graph",
+      "seed": 4,
+      "role": "component_ablation"
+    },
+    {
+      "dataset": "opmultiome",
+      "config": "H_LSNTA_only",
+      "seed": 4,
+      "role": "component_ablation"
+    }
+  ],
+  "sources": {
+    "snapshot/gedgc/pretrain.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "e9a5ede9a384d43b5aa0a1711043cecd1e58ae5b1f6533f57af28cdb0b7abb64"
+    },
+    "snapshot/gedgc/train.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "4751872ef3596c156f78d67239fc67c57be4e01e5548f4a9c973ad612b9ec242"
+    },
+    "snapshot/gedgc/run.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "cea60c9bcab1d0a14caa4d4feb6a86a73114718e1ef3415da43c08870291a0aa"
+    },
+    "snapshot/gedgc/module/classifier.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "032651ec20a2a46cb6231582e3e516a44626e6b67b5e3a12ca723e2dcd25a049"
+    },
+    "snapshot/gedgc/module/Multi_vae.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "153dff8fc23d54094e03f14f42d0d0c0224f2c27768540962c2413aa8b213c23"
+    },
+    "snapshot/gedgc/tools/early_stopping.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "f101321c5a9b455bdccfe9cabc1e05e6d635061ba65ec7b8dfa72a3adddd404e"
+    },
+    "snapshot/gedgc/tools/Form_data.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "5135127651a4643413a6da4ebb5608fa0c7828fefd1eaec59db56f08a5bc080b"
+    },
+    "snapshot/gedgc/tools/load_data.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "8e07f0b93ea1da515718fcd2322833a7b8a96df18940762dfa0f3852f5c6a173"
+    },
+    "snapshot/gedgc/tools/utils.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "913af3cb7c127555a4ac044fa3367f8953fce7b4f00945fcd7e5aa5ce525b31b"
+    },
+    "snapshot/gedgc/graph_embedding/spectralnet/_cluster.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "5d2bff0a3eb7b3d83430c6fbfe578b6b6a78447f9ffadef551cfcf80a76789d4"
+    },
+    "snapshot/gedgc/graph_embedding/spectralnet/_metrics.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "04dc1e7b1f335928bbe1ac5961c9136a7eb2e7f722b7d1c7290bce2a9ae55373"
+    },
+    "snapshot/gedgc/graph_embedding/spectralnet/_reduction.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "fb4ed4c6fe6b2e84d42d2b5ad2a6f5ffcdeb6422669986c7f4a0950488c390bf"
+    },
+    "snapshot/gedgc/graph_embedding/spectralnet/_utils.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "9780d0db4d2cf857533b5e15e378a400d0daec3b7925f3e5d0aba9cd0a9e9502"
+    },
+    "snapshot/gedgc/graph_embedding/spectralnet/__init__.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "f306951abc17b8b29bc0bb01a4c27c1f84b3a847d3eadd5a63afad550b519869"
+    },
+    "snapshot/gedgc/graph_embedding/spectralnet/_losses/_siamese_loss.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "a4a0987a8da12a0fa9336d1ac156bd9ea2ff0a0b06cfadcb21b91c510e7f29ca"
+    },
+    "snapshot/gedgc/graph_embedding/spectralnet/_losses/_spectralnet_loss.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "b51af69148323b5de363296eb31f3ddaf059b9cf72f8c8f4617801e743abea5f"
+    },
+    "snapshot/gedgc/graph_embedding/spectralnet/_losses/__init__.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "0a109359b15bb3320c039e76cd4deb0ae0fb15461a8d90786182d6982c296f46"
+    },
+    "snapshot/gedgc/graph_embedding/spectralnet/_models/_ae_model.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "f1d0c1de5e08dcf8e0eb343d59c1ef2f3da04a40f82b02508ed3f2c997b86b68"
+    },
+    "snapshot/gedgc/graph_embedding/spectralnet/_models/_siamesenet_model.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "c56ec66f9c99e58f3e5856ed7f73c7b10678369debac20211e3c13b9299435e7"
+    },
+    "snapshot/gedgc/graph_embedding/spectralnet/_models/_spectralnet_model.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "db07ece1cc9b44bfbfb922e3146f3043443ec8e4175e7226884a47c72b47495b"
+    },
+    "snapshot/gedgc/graph_embedding/spectralnet/_models/__init__.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "51ad84b161fdea155ec873f510ab2a5214ff7449ae4fc8647d4a8be774d4afd6"
+    },
+    "snapshot/gedgc/graph_embedding/spectralnet/_trainers/_ae_trainer.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "4a1bc78b180094d3bf11b6513a16ed009fd0cc0095d815841eb1141744179c5b"
+    },
+    "snapshot/gedgc/graph_embedding/spectralnet/_trainers/_siamesenet_trainer.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "cdf42110ac395ac2d4ffcab565809ea39f198f36552112192ee80cca5e83ba4b"
+    },
+    "snapshot/gedgc/graph_embedding/spectralnet/_trainers/_spectralnet_trainer.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "4ab4bf775fc45d584c00a29fcd5134e62208a7604b5f52f3ccd771767b6e933e"
+    },
+    "snapshot/gedgc/graph_embedding/spectralnet/_trainers/_trainer.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "d0d706678957ac7b846a2d6a31928cdd64da18801b68aadd738561de6a50e1d5"
+    },
+    "snapshot/gedgc/graph_embedding/spectralnet/_trainers/__init__.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "8c7f04b3abe0ad3b4662c52a8095cfdb819b66c6bb6d8b7648ccc596f79b50eb"
+    },
+    "snapshot/sp/pretrain.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "e9a5ede9a384d43b5aa0a1711043cecd1e58ae5b1f6533f57af28cdb0b7abb64"
+    },
+    "snapshot/sp/train.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "b2f4accdafad79c452277a1174d8ef5afe3085346c4eddcb00de2d46e014f8fe"
+    },
+    "snapshot/sp/run.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "6569fbe03160c16281ada15bb1c83a0f8dcb1366ff04d1498ed45682af3a255b"
+    },
+    "snapshot/sp/module/classifier.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "032651ec20a2a46cb6231582e3e516a44626e6b67b5e3a12ca723e2dcd25a049"
+    },
+    "snapshot/sp/module/Multi_vae.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "49e134d1dc59b47374db338416351fd5e40bd94a4aa5ee5cabe1492253fe2926"
+    },
+    "snapshot/sp/tools/early_stopping.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "f101321c5a9b455bdccfe9cabc1e05e6d635061ba65ec7b8dfa72a3adddd404e"
+    },
+    "snapshot/sp/tools/Form_data.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "5135127651a4643413a6da4ebb5608fa0c7828fefd1eaec59db56f08a5bc080b"
+    },
+    "snapshot/sp/tools/load_data-1.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "1bf565dca2930f5e54a399124254b3051503cf5c97b3b096af5a79226db8179f"
+    },
+    "snapshot/sp/tools/load_data.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "1cf95cfa6d1ce50a1158368c51e99f27fe482aaff2fd4469e3972f95a52bd3fa"
+    },
+    "snapshot/sp/tools/utils.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "913af3cb7c127555a4ac044fa3367f8953fce7b4f00945fcd7e5aa5ce525b31b"
+    },
+    "snapshot/sp/graph_embedding/spectralnet/_cluster.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "5d2bff0a3eb7b3d83430c6fbfe578b6b6a78447f9ffadef551cfcf80a76789d4"
+    },
+    "snapshot/sp/graph_embedding/spectralnet/_metrics.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "04dc1e7b1f335928bbe1ac5961c9136a7eb2e7f722b7d1c7290bce2a9ae55373"
+    },
+    "snapshot/sp/graph_embedding/spectralnet/_reduction.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "fb4ed4c6fe6b2e84d42d2b5ad2a6f5ffcdeb6422669986c7f4a0950488c390bf"
+    },
+    "snapshot/sp/graph_embedding/spectralnet/_utils.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "9780d0db4d2cf857533b5e15e378a400d0daec3b7925f3e5d0aba9cd0a9e9502"
+    },
+    "snapshot/sp/graph_embedding/spectralnet/__init__.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "f306951abc17b8b29bc0bb01a4c27c1f84b3a847d3eadd5a63afad550b519869"
+    },
+    "snapshot/sp/graph_embedding/spectralnet/_losses/_siamese_loss.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "a4a0987a8da12a0fa9336d1ac156bd9ea2ff0a0b06cfadcb21b91c510e7f29ca"
+    },
+    "snapshot/sp/graph_embedding/spectralnet/_losses/_spectralnet_loss.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "b51af69148323b5de363296eb31f3ddaf059b9cf72f8c8f4617801e743abea5f"
+    },
+    "snapshot/sp/graph_embedding/spectralnet/_losses/__init__.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "0a109359b15bb3320c039e76cd4deb0ae0fb15461a8d90786182d6982c296f46"
+    },
+    "snapshot/sp/graph_embedding/spectralnet/_models/_ae_model.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "f1d0c1de5e08dcf8e0eb343d59c1ef2f3da04a40f82b02508ed3f2c997b86b68"
+    },
+    "snapshot/sp/graph_embedding/spectralnet/_models/_siamesenet_model.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "c56ec66f9c99e58f3e5856ed7f73c7b10678369debac20211e3c13b9299435e7"
+    },
+    "snapshot/sp/graph_embedding/spectralnet/_models/_spectralnet_model.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "db07ece1cc9b44bfbfb922e3146f3043443ec8e4175e7226884a47c72b47495b"
+    },
+    "snapshot/sp/graph_embedding/spectralnet/_models/__init__.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "51ad84b161fdea155ec873f510ab2a5214ff7449ae4fc8647d4a8be774d4afd6"
+    },
+    "snapshot/sp/graph_embedding/spectralnet/_trainers/_ae_trainer.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "4a1bc78b180094d3bf11b6513a16ed009fd0cc0095d815841eb1141744179c5b"
+    },
+    "snapshot/sp/graph_embedding/spectralnet/_trainers/_siamesenet_trainer.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "cdf42110ac395ac2d4ffcab565809ea39f198f36552112192ee80cca5e83ba4b"
+    },
+    "snapshot/sp/graph_embedding/spectralnet/_trainers/_spectralnet_trainer.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "4ab4bf775fc45d584c00a29fcd5134e62208a7604b5f52f3ccd771767b6e933e"
+    },
+    "snapshot/sp/graph_embedding/spectralnet/_trainers/_trainer.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "d0d706678957ac7b846a2d6a31928cdd64da18801b68aadd738561de6a50e1d5"
+    },
+    "snapshot/sp/graph_embedding/spectralnet/_trainers/__init__.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "8c7f04b3abe0ad3b4662c52a8095cfdb819b66c6bb6d8b7648ccc596f79b50eb"
+    },
+    "snapshot/nmodal/pretrain.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "a520b1453cd46b3daf14fe79947bf89b08662ce2d811bad2493b273dcf917d7a"
+    },
+    "snapshot/nmodal/train.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "803e424fa6970efbe8d73c3fbcce56b288d3be72e57148de10c224604edabb06",
+      "snapshot_sha256_after_seed_parameterization": "518f02fc2332d641c29edfd25248050d4d54d343a82d511846f16c6e2890cc13"
+    },
+    "snapshot/nmodal/run.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "7e251c6b4e60176c372b9bffadf138f9fb6dc387ae35613142f874a8c7553c28"
+    },
+    "snapshot/nmodal/module/classifier.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "032651ec20a2a46cb6231582e3e516a44626e6b67b5e3a12ca723e2dcd25a049"
+    },
+    "snapshot/nmodal/module/Multi_vae.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "49e134d1dc59b47374db338416351fd5e40bd94a4aa5ee5cabe1492253fe2926"
+    },
+    "snapshot/nmodal/tools/early_stopping.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "f101321c5a9b455bdccfe9cabc1e05e6d635061ba65ec7b8dfa72a3adddd404e"
+    },
+    "snapshot/nmodal/tools/Form_data.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "5135127651a4643413a6da4ebb5608fa0c7828fefd1eaec59db56f08a5bc080b"
+    },
+    "snapshot/nmodal/tools/load_data-1.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "1bf565dca2930f5e54a399124254b3051503cf5c97b3b096af5a79226db8179f"
+    },
+    "snapshot/nmodal/tools/load_data.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "0659bbd5b4b15391612e8fa35a54276cf36ee6c5bf1f7dbb5eacc37e37216e6a"
+    },
+    "snapshot/nmodal/tools/utils.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "913af3cb7c127555a4ac044fa3367f8953fce7b4f00945fcd7e5aa5ce525b31b"
+    },
+    "snapshot/nmodal/graph_embedding/spectralnet/_cluster.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "5d2bff0a3eb7b3d83430c6fbfe578b6b6a78447f9ffadef551cfcf80a76789d4"
+    },
+    "snapshot/nmodal/graph_embedding/spectralnet/_metrics.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "04dc1e7b1f335928bbe1ac5961c9136a7eb2e7f722b7d1c7290bce2a9ae55373"
+    },
+    "snapshot/nmodal/graph_embedding/spectralnet/_reduction.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "fb4ed4c6fe6b2e84d42d2b5ad2a6f5ffcdeb6422669986c7f4a0950488c390bf"
+    },
+    "snapshot/nmodal/graph_embedding/spectralnet/_utils.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "9780d0db4d2cf857533b5e15e378a400d0daec3b7925f3e5d0aba9cd0a9e9502"
+    },
+    "snapshot/nmodal/graph_embedding/spectralnet/__init__.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "f306951abc17b8b29bc0bb01a4c27c1f84b3a847d3eadd5a63afad550b519869"
+    },
+    "snapshot/nmodal/graph_embedding/spectralnet/_losses/_siamese_loss.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "a4a0987a8da12a0fa9336d1ac156bd9ea2ff0a0b06cfadcb21b91c510e7f29ca"
+    },
+    "snapshot/nmodal/graph_embedding/spectralnet/_losses/_spectralnet_loss.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "b51af69148323b5de363296eb31f3ddaf059b9cf72f8c8f4617801e743abea5f"
+    },
+    "snapshot/nmodal/graph_embedding/spectralnet/_losses/__init__.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "0a109359b15bb3320c039e76cd4deb0ae0fb15461a8d90786182d6982c296f46"
+    },
+    "snapshot/nmodal/graph_embedding/spectralnet/_models/_ae_model.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "f1d0c1de5e08dcf8e0eb343d59c1ef2f3da04a40f82b02508ed3f2c997b86b68"
+    },
+    "snapshot/nmodal/graph_embedding/spectralnet/_models/_siamesenet_model.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "c56ec66f9c99e58f3e5856ed7f73c7b10678369debac20211e3c13b9299435e7"
+    },
+    "snapshot/nmodal/graph_embedding/spectralnet/_models/_spectralnet_model.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "db07ece1cc9b44bfbfb922e3146f3043443ec8e4175e7226884a47c72b47495b"
+    },
+    "snapshot/nmodal/graph_embedding/spectralnet/_models/__init__.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "51ad84b161fdea155ec873f510ab2a5214ff7449ae4fc8647d4a8be774d4afd6"
+    },
+    "snapshot/nmodal/graph_embedding/spectralnet/_trainers/_ae_trainer.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "4a1bc78b180094d3bf11b6513a16ed009fd0cc0095d815841eb1141744179c5b"
+    },
+    "snapshot/nmodal/graph_embedding/spectralnet/_trainers/_siamesenet_trainer.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "cdf42110ac395ac2d4ffcab565809ea39f198f36552112192ee80cca5e83ba4b"
+    },
+    "snapshot/nmodal/graph_embedding/spectralnet/_trainers/_spectralnet_trainer.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "4ab4bf775fc45d584c00a29fcd5134e62208a7604b5f52f3ccd771767b6e933e"
+    },
+    "snapshot/nmodal/graph_embedding/spectralnet/_trainers/_trainer.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "d0d706678957ac7b846a2d6a31928cdd64da18801b68aadd738561de6a50e1d5"
+    },
+    "snapshot/nmodal/graph_embedding/spectralnet/_trainers/__init__.py": {
+      "source_path": "archived_source_metadata",
+      "sha256": "8c7f04b3abe0ad3b4662c52a8095cfdb819b66c6bb6d8b7648ccc596f79b50eb"
+    }
+  },
+  "fixed_parameters": {
+    "latent_dimension": "annotated_K",
+    "encoder_hidden": 256,
+    "graph_K": 3,
+    "SP_beta": 0.1,
+    "FG_k": 15,
+    "FG_lambda": 0.2,
+    "FG_min_gate": 0.2,
+    "FG_power": 1.0,
+    "UOT_k": 3,
+    "UOT_lambda": 0.15,
+    "UOT_batch": 256,
+    "UOT_epsilon": 0.05,
+    "UOT_tau": 1.0,
+    "UOT_iterations": 60,
+    "VAE_epochs": 100,
+    "classifier_epochs": 70,
+    "joint_max_epochs": 1000,
+    "patience": 10,
+    "early_stop_delta": 0.001
+  },
+  "cold_start": true,
+  "reuse_old_checkpoints": false,
+  "runtime_scope": "load_and_preprocess + VAE/GMM/classifier pretraining + spectral graph + structural updates + joint optimization + inference/export; excludes source/data fingerprint verification before timer",
+  "peak_gpu_memory": "PyTorch max_memory_allocated and max_memory_reserved over full worker pipeline; not total device memory",
+  "unchanged_math_asserted": true,
+  "data_provenance_caveats": {
+    "Kidney_4753": "Author-constructed paired sci-CAR mouse kidney (Cao2018/GSE117089); shared raw barcodes, label-based missing-value filter and proportional stratified sampling. Constructor and numeric raw-source reconstruction validated. Legacy feature-header offset is corrected in a separately versioned, numerically identical annotation file.",
+    "dyngen_branching": "Author-compatible simulation, 13 actual transition classes; rna=premrna+mrna and adt=simulated counts_protein. Generator/exporter/converter recovered; current feature and view mappings validated. Original historical RDS was not independently recovered; author consistency confirmation is retained as distinct from independent numerical audit."
+  },
+  "execution_sha256": {
+    "run_worker.py": "0b2783d9e25daac0bd8928e06868b767988dc2bee6ab284cde8643ca7b778bab",
+    "run_queue.py": "b71f6ece8ff6de2272e0d58ef8d6006083777308e518e9793ac76097a930b690",
+    "status.py": "e01851eb757d4a8c54ccfe68415879fa51f07716c64b962e796babce60d6fab2",
+    "check_design.py": "436cfe21747d80e587a4aa8d17e836f8bfb2127f30dc83fc93957b31e5293305"
+  },
+  "measurement_notes": [
+    "Fresh model initialization is cold-start; filesystem cache is not forcibly cleared.",
+    "CUDA context/import/source hash verification happen before the timed model pipeline.",
+    "Stage timings have nested totals; do not sum all timing rows.",
+    "PyTorch tensor and caching-allocator peaks exclude Windows desktop/driver/other-process allocations.",
+    "SpectralNet workspace is released after graph construction using a common runner lifecycle."
+  ],
+  "original_protocol_sha256": "5b920c3b114c1a71033c5160d1bdec89814810adc299d08d2a17e851c348c921",
+  "portable_metadata_note": "Portable template updates recovered provenance and resolves local paths; original immutable protocol identity is recorded separately. Scientific settings and source/input fingerprints remain frozen."
+}

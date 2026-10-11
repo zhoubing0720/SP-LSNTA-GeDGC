@@ -1,0 +1,17 @@
+# Analysis plan fixed for this synthesis, 2026-10-11
+
+This plan is written after inspecting the means, before calculating the new-batch p values. It is an analysis plan for revision, not a prospective preregistration. The local protocol retains seeds 0--4 without post-hoc exclusions. This file describes analysis procedures; numerical findings are not distributed here.
+
+Unit: a complete independent training run on one fixed processed dataset. Matching seed numbers are the protocol-defined blocks. n=5 is training variability, not donor replication or an estimate of biological generalisation.
+
+Validate every saved prediction against ACC (Hungarian assignment), NMI (arithmetic normalisation), ARI, Purity and FMI. Verify protocol, source/data fingerprints, fresh pretraining checkpoint hashes, complete groups and latent/label ordering. Use metrics from the new batch only.
+
+Main inference: four manuscript metrics ACC/NMI/ARI/Purity across seven datasets. Report means and sample SD (ddof=1), paired differences in score*100 units, two-sided 95% Student t intervals (df=4). Retain the inherited greater-than paired t test as historical protocol output. Primary conservative revision summary uses two-sided p values and Holm correction across all 28 main contrasts. FMI is an auxiliary metric: also provide Holm across all 35 contrasts as a disclosed sensitivity analysis, not a replacement selected for favourable p values.
+
+Ablation: all eight configurations A--H on Pbmc10k, Chen_high and opmultiome. Ten contrasts: B-A, H-A, F-A, F-B, F-H, C-B, F-G, F-E, F-D, and interaction F-B-H+A. Report same-seed differences and t intervals. Correct two-sided p values across 120 contrasts (3 datasets*10 contrasts*4 core metrics); supply Holm150 including FMI as sensitivity. Pbmc interaction ACC/ARI is also reported with correction across its two specifically requested interaction endpoints, clearly a different family. Do not infer interaction from different significance statuses of separate effects.
+
+Small sample sensitivity: enumerate all 32 sign assignments of five paired differences; two-sided sign-flip p requires exchangeable/symmetric differences and has minimum 0.0625. It cannot establish two-sided p<0.05 with n=5. Report this limitation beside t-based findings. No cells treated as independent test units, no post-hoc exclusions and no selected best seed.
+
+Performance: total profiled time includes load/preprocess, fresh VAE/GMM/classifier pretraining, graph construction, structural refinement, joint optimisation and inference/export; excludes prior fingerprint hashing and CUDA initialisation. Report allocated and reserved PyTorch peaks separately, in MiB, not GPU capacity or total driver memory. Nested stage timers are not summed as independent stages. Compare original raw-feature graph and full latent graph as their actually implemented pipelines; lower GPU peaks do not remove quadratic complexity or show lower CPU/system RAM. Report observed early-stop epochs.
+
+Visualisation: use posterior-mean latent export of the preselected seed 0, all cells, same annotation colour mapping, UMAP n_neighbors=30/min_dist=0.3/metric=euclidean/random_state=42; fit each model's representation separately. Panel coordinates are not directly comparable between fits. These are representative visualisations, not uncertainty or performance tests. Preserve exported sampled classifier predictions as the source of metrics. Earlier literature panels are not used as controlled visual evidence.

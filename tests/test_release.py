@@ -26,8 +26,8 @@ class ReleaseTests(unittest.TestCase):
             "Multilevel Structural Alignment for Single-Cell Multi-Omics Clustering"
         )
         self.assertIn(title, citation)
-        self.assertIn("submission to *Cells*", readme)
-        repository_url = "https://github.com/zhoubing0720/SP-LSNTA-GeDGC-Cells"
+        self.assertIn("submitted to **Algorithms (MDPI)**", readme)
+        repository_url = "https://github.com/zhoubing0720/SP-LSNTA-GeDGC"
         self.assertIn(repository_url, readme)
         self.assertIn(repository_url, citation)
         self.assertNotIn("[GitHub repository URL]", readme)
@@ -119,6 +119,8 @@ class ReleaseTests(unittest.TestCase):
                 summary = next(csv.DictReader(handle))
             self.assertEqual(summary["Runs"], "5")
             self.assertEqual(float(summary["ACC_mean"]), 2.0)
+            self.assertAlmostEqual(float(summary["ACC_std"]), (2.5)**0.5)
+            self.assertAlmostEqual(float(summary["ACC_std"]), (2.5)**0.5)
 
     def test_fixed_experiment_config_is_consumed_by_entry_points(self):
         run_source = (ROOT / "run.py").read_text(encoding="utf-8")
