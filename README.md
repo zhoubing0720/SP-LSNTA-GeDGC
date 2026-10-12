@@ -8,7 +8,7 @@ Authors: Shizheng Zhang, Bing Zhou, Yanbu Guo, Min Huang, Wanwei Huang, and Dong
 
 This repository provides model source, execution configurations, data preparation and analysis code, processed input files and dataset documentation. Experimental results, figures, supplementary result tables and reviewer-response letters are not distributed here. Code execution generates outputs locally.
 
-[Dataset construction, pairing, annotation use and molecular-view definitions](docs/DATASET_CONSTRUCTION.md) are explained in the repository. [Processed input release](https://github.com/zhoubing0720/SP-LSNTA-GeDGC/releases/tag/reviewer-revision-2026-10-11) supplies five data assets and two checksum manifests. Four smaller exact inputs remain in data/processed. See data/README.md and data/revision_release_status.json.
+[Dataset construction, pairing, annotation use and molecular-view definitions](docs/DATASET_CONSTRUCTION.md) are explained in the repository. [Processed input release](https://github.com/zhoubing0720/SP-LSNTA-GeDGC/releases/tag/v1.0.0) supplies five data assets and two checksum manifests. Four smaller exact inputs remain in data/processed. See data/README.md and data/revision_release_status.json.
 
 ## Obtain and verify inputs
 
@@ -21,16 +21,16 @@ The legacy Kidney file preserves the exact numeric input with the documented old
 
 ## Run locally
 
-The full-pipeline source and launchers are revision/frozen_source and revision/runner. revision/protocol_template.json defines the data identities, seeds and component configurations. Use the scientific dependencies in revision/environment_versions.json; the documented environment is Python 3.8.20, PyTorch 2.1.2/CUDA 11.8 and an NVIDIA GPU.
+The full-pipeline source and launchers are reproduction/frozen_source and reproduction/runner. reproduction/protocol_template.json defines the data identities, seeds and component configurations. Use the scientific dependencies in reproduction/environment_versions.json; the documented environment is Python 3.8.20, PyTorch 2.1.2/CUDA 11.8 and an NVIDIA GPU.
 
 ```text
-python revision/prepare_reproduction.py --data-dir data/processed --output new_runs
+python reproduction/prepare_reproduction.py --data-dir data/processed --output new_runs
 python new_runs/run_queue.py
-python revision/analyze_all_runs.py --batch new_runs --out local_analysis
-python revision/make_revision_figures.py --batch new_runs --analysis local_analysis
+python reproduction/analyze_all_runs.py --batch new_runs --out local_analysis
+python reproduction/make_revision_figures.py --batch new_runs --analysis local_analysis
 ```
 
-Preparation requires a new output directory and verifies input/source hashes. Each worker starts fresh pretraining and writes predictions, timing and memory records to the local output directory. See docs/REPRODUCIBILITY.md, revision/ANALYSIS_PLAN.md and docs/METRICS.md. The root run.py is a separate legacy convenience interface with a historical checkpoint-reuse option.
+Preparation requires a new output directory and verifies input/source hashes. Each worker starts fresh pretraining and writes predictions, timing and memory records to the local output directory. See docs/REPRODUCIBILITY.md, reproduction/ANALYSIS_PLAN.md and docs/METRICS.md. The root run.py is a separate legacy convenience interface with a historical checkpoint-reuse option.
 
 ## Implemented method
 

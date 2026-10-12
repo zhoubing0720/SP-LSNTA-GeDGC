@@ -2,7 +2,7 @@
 
 **Versioned processed inputs:** the files and SHA256 checksums have been verified. Check the linked Release and live API status for public access; four smaller exact inputs remain hosted in the source tree.
 
-Target versioned assets: https://github.com/zhoubing0720/SP-LSNTA-GeDGC/releases/tag/reviewer-revision-2026-10-11. Input identities are listed in dataset_manifest.csv and revision/protocol_template.json. Use scripts/download_processed_revision.py and scripts/verify_data.py --scope all.
+Target versioned assets: https://github.com/zhoubing0720/SP-LSNTA-GeDGC/releases/tag/v1.0.0. Input identities are listed in dataset_manifest.csv and reproduction/protocol_template.json. Use scripts/download_processed_revision.py and scripts/verify_data.py --scope all.
 
 ## Kidney
 

@@ -1,21 +1,21 @@
 [
   {
     "dataset": "Pbmc10k",
-    "url": "https://github.com/zhoubing0720/SP-LSNTA-GeDGC/releases/download/reviewer-revision-2026-10-11/Pbmc10k.h5mu",
+    "url": "https://github.com/zhoubing0720/SP-LSNTA-GeDGC/releases/download/v1.0.0/Pbmc10k.h5mu",
     "target": "data/processed/Pbmc10k.h5mu",
     "bytes": 106211103,
     "sha256": "0783723e670ed9d4cba53a5f8d964e8d687ea5df0868665c06c9a4e04a3ef80f"
   },
   {
     "dataset": "opmultiome",
-    "url": "https://github.com/zhoubing0720/SP-LSNTA-GeDGC/releases/download/reviewer-revision-2026-10-11/opmultiome.h5mu",
+    "url": "https://github.com/zhoubing0720/SP-LSNTA-GeDGC/releases/download/v1.0.0/opmultiome.h5mu",
     "target": "data/processed/opmultiome.h5mu",
     "bytes": 568210479,
     "sha256": "3b23dac8f96d21e9163a4cc3fe1edd412923820aca6f09685a0f0ba8efeb616a"
   },
   {
     "dataset": "TEA-seq",
-    "url": "https://github.com/zhoubing0720/SP-LSNTA-GeDGC/releases/download/reviewer-revision-2026-10-11/TEA_seq.h5mu",
+    "url": "https://github.com/zhoubing0720/SP-LSNTA-GeDGC/releases/download/v1.0.0/TEA_seq.h5mu",
     "target": "data/processed/TEA-seq.h5mu",
     "bytes": 228183519,
     "sha256": "393a4f21785a89c50a6ad4004bd83aee929cd9713c90c3066fc8e6582054a0ac"

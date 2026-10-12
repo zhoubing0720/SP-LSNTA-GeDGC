@@ -6,5 +6,5 @@
 *.pth binary
 *.png binary
 
-revision/frozen_source/** -text
-revision/runner/** -text
+reproduction/frozen_source/** -text
+reproduction/runner/** -text

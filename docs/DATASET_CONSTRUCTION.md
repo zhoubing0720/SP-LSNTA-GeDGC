@@ -1,6 +1,6 @@
 # Dataset construction and input identity
 
-This page gives the data explanations associated with the controlled revision benchmark. The manuscript keeps the basic input table, corrected references and availability pointer. Detailed construction, pairing, annotation use and molecular-view definitions are documented here and in [data/README.md](../data/README.md).
+This page gives the data explanations associated with the controlled benchmark. The manuscript keeps the basic input table, corrected references and availability pointer. Detailed construction, pairing, annotation use and molecular-view definitions are documented here and in [data/README.md](../data/README.md).
 
 ## Current access status
 
@@ -16,7 +16,7 @@ An initial CSV-header error shifted feature IDs by one source row. The original 
 
 ## Exact real-data inputs
 
-The seven frozen inputs are described by dimensions and SHA256 in [the manifest](../data/dataset_manifest.csv) and [the portable protocol](../revision/protocol_template.json). Chen-2019 is the SNARE-seq mouse-brain benchmark; Pbmc10k derives from GLUE-distributed paired 10x Multiome PBMC material; opmultiome uses GSE194122 site1_donor1_multiome; multiome uses the documented GSE194122 batches. Direct release of the exact final processed inputs is the reproducibility route where historical raw-to-final preparation was not independently rebuilt. Matching reported dimensions is not evidence of original-paper byte identity.
+The seven frozen inputs are described by dimensions and SHA256 in [the manifest](../data/dataset_manifest.csv) and [the portable protocol](../reproduction/protocol_template.json). Chen-2019 is the SNARE-seq mouse-brain benchmark; Pbmc10k derives from GLUE-distributed paired 10x Multiome PBMC material; opmultiome uses GSE194122 site1_donor1_multiome; multiome uses the documented GSE194122 batches. Direct release of the exact final processed inputs is the reproducibility route where historical raw-to-final preparation was not independently rebuilt. Matching reported dimensions is not evidence of original-paper byte identity.
 
 The original-preparation alternative and direct-processed-input alternative are distinguished. This update supplies actual experiment files, recorded source identities and recovered preparation programs, without pretending every missing historical intermediate was recovered.
 
@@ -43,4 +43,4 @@ The recovered generator uses dyngen 1.1.1, simulation seed 1, backbone_branching
 
 ## Training and analysis distinction
 
-Input labels provide the known cluster count and evaluation references. Classifier pretraining uses GMM pseudo-labels. The execution configurations keep data preparation, training seed, simulation seed and local output identity separate. See [revision documentation](../revision/README.md).
+Input labels provide the known cluster count and evaluation references. Classifier pretraining uses GMM pseudo-labels. The execution configurations keep data preparation, training seed, simulation seed and local output identity separate. See [reproduction documentation](../reproduction/README.md).

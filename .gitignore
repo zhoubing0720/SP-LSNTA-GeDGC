@@ -65,14 +65,14 @@ htmlcov/
 
 # Keep experimental outputs and reviewer correspondence local.
 results/
-revision/tables/
-revision/figures/
-revision/latex_tables/
-revision/supplementary*/
-revision/analysis_report_zh.md
-revision/analysis_validation.json
-revision/feature_gate_diagnostics.json
-revision/figure_captions_and_claims_zh.md
+reproduction/tables/
+reproduction/figures/
+reproduction/latex_tables/
+reproduction/supplementary*/
+reproduction/analysis_report_zh.md
+reproduction/analysis_validation.json
+reproduction/feature_gate_diagnostics.json
+reproduction/figure_captions_and_claims_zh.md
 new_runs/
 local_analysis/
 revision_runs/
